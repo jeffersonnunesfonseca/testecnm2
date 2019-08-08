@@ -1,0 +1,17 @@
+# v2 syntax
+version: '2'
+services:
+  app: 
+    build: .
+    image: testecnm
+    container_name: testecnm-app
+    ports: 
+      - "8880:80"
+    volumes: 
+      - .:/var/www/html
+      - ./docker/apache/apache2.conf:/etc/apache2/apache2.conf
+      - ./docker/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    environment:
+      CONTAINER_ROLE: app
+    restart: always
